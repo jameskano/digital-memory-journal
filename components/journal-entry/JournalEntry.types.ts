@@ -3,4 +3,5 @@ export type JournalEntryType = {
 	title: string;
 	text: string;
 	date: string;
+	firstOfGroup?: boolean;
 };

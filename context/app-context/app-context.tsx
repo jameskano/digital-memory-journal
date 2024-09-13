@@ -4,11 +4,11 @@ type AppContextType = {
 	theme: 'light' | 'dark';
 	locale: string;
 	logged: boolean;
-	datesDisplayed: string[];
+	name: string;
 	setTheme: (value: 'light' | 'dark') => void;
 	setLocale: (value: string) => void;
 	setLogged: (value: boolean) => void;
-	setDatesDisplayed: (value: string[]) => void;
+	setName: (value: string) => void;
 };
 
 export const AppContext = createContext({} as AppContextType);

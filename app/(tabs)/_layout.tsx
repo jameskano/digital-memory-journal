@@ -1,87 +1,131 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { colors, themes } from '@/constants/Colors';
+import { colors, themes } from '@/styles/colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Ionicons } from '@expo/vector-icons';
-import { View, Text } from 'react-native';
-import styles from '@/styles/tabs-layout';
+import variablesStyles from '@/styles/variables';
+import { useNavigation } from '@react-navigation/native';
 
 export default function TabLayout() {
-	const colorScheme = useColorScheme();
+	const colorSceheme = useColorScheme();
+	const theme = themes[colorSceheme ?? 'dark'];
+	const navigation = useNavigation();
 
 	return (
-		<>
-			<View style={styles.header}>
-				<Text style={styles.headerTitle}>Journal name</Text>
-				<Ionicons name='search' size={24} style={styles.headerSearch} />
-			</View>
-
-			<Tabs
-				screenOptions={{
-					tabBarActiveTintColor: themes[colorScheme ?? 'light'].tint,
-					headerShown: false,
-				}}>
-				<Tabs.Screen
-					name='today'
-					options={{
-						title: 'Today',
-						tabBarIcon: (focused: boolean) => {
-							return (
-								<Ionicons
-									name='book'
-									size={24}
-									color={focused ? colors.barIconFocused : colors.barIcon}
-								/>
-							);
-						},
-					}}
-				/>
-				<Tabs.Screen
-					name='calendar'
-					options={{
-						title: 'Calendar',
-						tabBarIcon: (focused: boolean) => {
-							return (
-								<Ionicons
-									name='calendar'
-									size={24}
-									color={focused ? colors.barIconFocused : colors.barIcon}
-								/>
-							);
-						},
-					}}
-				/>
-				<Tabs.Screen
-					name='more'
-					options={{
-						title: 'More',
-						tabBarIcon: (focused: boolean) => {
-							return (
-								<Ionicons
-									name='ellipsis-horizontal-circle-sharp'
-									size={24}
-									color={focused ? colors.barIconFocused : colors.barIcon}
-								/>
-							);
-						},
-					}}
-				/>
-				<Tabs.Screen
-					name='settings'
-					options={{
-						title: 'Settings',
-						tabBarIcon: (focused: boolean) => {
-							return (
-								<Ionicons
-									name='settings'
-									size={24}
-									color={focused ? colors.barIconFocused : colors.barIcon}
-								/>
-							);
-						},
-					}}
-				/>
-			</Tabs>
-		</>
+		<Tabs
+			sceneContainerStyle={{
+				backgroundColor: theme.background2,
+			}}
+			screenOptions={{
+				headerShown: false,
+				tabBarStyle: {
+					borderTopRightRadius: variablesStyles.borderRadius5,
+					borderTopLeftRadius: variablesStyles.borderRadius5,
+					backgroundColor: theme.background1,
+					borderWidth: 1,
+					borderTopWidth: 1,
+					width: '100%',
+					// rem
+					height: variablesStyles.headerBar,
+					borderRightColor: theme.background3,
+					borderLeftColor: theme.background3,
+				},
+				tabBarLabelStyle: {
+					// color: theme.text3,
+					// rf
+					fontSize: variablesStyles.font4,
+					marginBottom: variablesStyles.spacing2,
+				},
+				tabBarActiveTintColor: variablesStyles.colorPrimary,
+				tabBarInactiveTintColor: theme.text3,
+			}}>
+			<Tabs.Screen
+				name='today'
+				options={{
+					title: 'Today',
+					tabBarIcon: ({ focused }: { focused: boolean }) => {
+						return (
+							<Ionicons
+								name='heart-half'
+								size={24}
+								color={focused ? variablesStyles.colorPrimary : theme.text3}
+							/>
+						);
+					},
+				}}
+			/>
+			<Tabs.Screen
+				name='calendar'
+				options={{
+					title: 'Calendar',
+					tabBarIcon: ({ focused }: { focused: boolean }) => {
+						return (
+							<Ionicons
+								name='calendar'
+								size={24}
+								color={focused ? variablesStyles.colorPrimary : theme.text3}
+							/>
+						);
+					},
+				}}
+			/>
+			<Tabs.Screen
+				name='mood'
+				options={{
+					title: '',
+					headerShown: true,
+					headerLeft: () => (
+						<Ionicons
+							name='arrow-back'
+							size={24}
+							color={variablesStyles.colorPrimary}
+							style={{ marginLeft: 10 }}
+							// onPress={() => navigation.goBack()}
+						/>
+					),
+					tabBarIcon: () => {
+						return (
+							<Ionicons
+								name='add-circle'
+								size={55}
+								color={variablesStyles.colorPrimary}
+								style={{ position: 'absolute', top: -15 }}
+								// onPress={() => navigation.navigate('mood')}
+							/>
+						);
+					},
+				}}
+			/>
+			<Tabs.Screen
+				name='stats'
+				options={{
+					title: 'Stats',
+					tabBarIcon: ({ focused }: { focused: boolean }) => {
+						return (
+							<Ionicons
+								name='pie-chart'
+								size={24}
+								color={focused ? variablesStyles.colorPrimary : theme.text3}
+							/>
+						);
+					},
+				}}
+			/>
+			<Tabs.Screen
+				name='settings'
+				options={{
+					title: 'Settings',
+					tabBarIcon: ({ focused }: { focused: boolean }) => {
+						return (
+							<Ionicons
+								name='settings'
+								size={24}
+								color={focused ? variablesStyles.colorPrimary : theme.text3}
+							/>
+						);
+					},
+				}}
+			/>
+		</Tabs>
 	);
 }

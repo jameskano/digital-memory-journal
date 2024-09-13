@@ -5,20 +5,20 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 	const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 	const [locale, setLocale] = useState('en');
 	const [logged, setLogged] = useState(false);
-	const [datesDisplayed, setDatesDisplayed] = useState<string[]>([]);
+	const [name, setName] = useState('');
 
 	const value = useMemo(
 		() => ({
 			theme,
 			locale,
 			logged,
-			datesDisplayed,
+			name,
 			setTheme,
 			setLocale,
 			setLogged,
-			setDatesDisplayed,
+			setName,
 		}),
-		[theme, locale, logged, datesDisplayed],
+		[theme, locale, logged, name],
 	);
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
