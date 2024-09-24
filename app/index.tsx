@@ -1,12 +1,14 @@
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/helpers/hooks/useColorScheme';
 import { themes } from '@/styles/colors';
-import { Link } from 'expo-router';
+import { Link, Redirect } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Index() {
 	const colorScheme = useColorScheme();
 	const theme = themes[colorScheme ?? 'dark'];
+
+	if (true) return <Redirect href='/(tabs)/today' />;
 
 	return (
 		<SafeAreaView

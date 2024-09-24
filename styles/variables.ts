@@ -154,7 +154,7 @@ const variablesStyles = {
 	colorBackgroundDark5: '#464646',
 
 	// Miscellaneous
-	headerBar: 60,
+	headerBar: 65,
 };
 
 export default variablesStyles;

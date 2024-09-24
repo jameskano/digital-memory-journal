@@ -4,12 +4,12 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/helpers/hooks/useColorScheme';
 import { AppProvider } from '@/context/app-context/app-provider';
 import { StatusBar } from 'react-native';
 import variablesStyles from '@/styles/variables';
-import { View } from 'react-native';
 import { themes } from '@/styles/colors';
+import { NativeBaseProvider } from 'native-base';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,22 +32,27 @@ export default function RootLayout() {
 	}
 
 	return (
-		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-			<AppProvider>
-				<StatusBar
-					backgroundColor={variablesStyles.colorPrimary}
-					barStyle={colorScheme === 'dark' ? 'dark-content' : 'light-content'}
-				/>
-				<Stack>
-					<Stack.Screen
-						name='(tabs)'
-						options={{ headerShown: false, contentStyle: { backgroundColor: theme.background2 } }}
+		<NativeBaseProvider>
+			<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+				<AppProvider>
+					<StatusBar
+						backgroundColor={variablesStyles.colorPrimary}
+						barStyle={colorScheme === 'dark' ? 'dark-content' : 'light-content'}
 					/>
-					<Stack.Screen name='(auth)' options={{ headerShown: false }} />
-					<Stack.Screen name='index' options={{ headerShown: false }} />
-					<Stack.Screen name='+not-found' />
-				</Stack>
-			</AppProvider>
-		</ThemeProvider>
+					<Stack>
+						<Stack.Screen
+							name='(tabs)'
+							options={{
+								headerShown: false,
+								contentStyle: { backgroundColor: theme.background2 },
+							}}
+						/>
+						<Stack.Screen name='(auth)' options={{ headerShown: false }} />
+						<Stack.Screen name='index' options={{ headerShown: false }} />
+						<Stack.Screen name='+not-found' />
+					</Stack>
+				</AppProvider>
+			</ThemeProvider>
+		</NativeBaseProvider>
 	);
 }

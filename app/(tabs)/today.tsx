@@ -1,13 +1,13 @@
 import { ImageBackground, View } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { entries } from '@/constants/mocked-entries';
+import { entries } from '@/helpers/constants/mocked-entries';
 import JournalEntry from '@/components/journal-entry/JournalEntry';
 import JournalDate from '@/components/journal-date/JournalDate';
 import useTodayStyles from '@/styles/today.styles';
 import { Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useGreetings } from '@/hooks/useGreetings';
+import { useGreetings } from '@/helpers/hooks/useGreetings';
 
 const Today = () => {
 	const styles = useTodayStyles();
@@ -24,11 +24,18 @@ const Today = () => {
 			<View style={styles.todayScreen}>
 				{today ? (
 					<>
-						<Text style={styles.todayTitle}>You feel</Text>
+						<ImageBackground
+							source={require('../../assets/images/magic3.png')}
+							style={styles.imageBackground}>
+							<Text style={styles.todayTitle}>You feel</Text>
+						</ImageBackground>
+						<View>{entries && entries.map((entry) => <View></View>)}</View>
 					</>
 				) : (
 					<>
-						<ImageBackground source='../../assets/images/magic1.png' style={styles.imageBackground}>
+						<ImageBackground
+							source={require('../../assets/images/magic1.png')}
+							style={styles.imageBackground}>
 							<Text style={styles.todayTitle}>{greetingQuestion}</Text>
 						</ImageBackground>
 					</>

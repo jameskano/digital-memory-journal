@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import variablesStyles from '@/styles/variables';
 import { useResponsive } from 'react-native-responsive-hook';
 import { themes } from '@/styles/colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/helpers/hooks/useColorScheme';
 
 const useJournalEntryStyles = () => {
 	// const { rem, rf } = useResponsive();

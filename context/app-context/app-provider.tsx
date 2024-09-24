@@ -5,7 +5,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 	const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 	const [locale, setLocale] = useState('en');
 	const [logged, setLogged] = useState(false);
-	const [name, setName] = useState('');
+	const [name, setName] = useState('Jimmy');
 
 	const value = useMemo(
 		() => ({

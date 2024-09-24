@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import variablesStyles from '@/styles/variables';
 import { useResponsive } from 'react-native-responsive-hook';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/helpers/hooks/useColorScheme';
 import { themes } from './colors';
 
 const useTodayStyles = () => {

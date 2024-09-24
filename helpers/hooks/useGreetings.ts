@@ -1,4 +1,4 @@
-import { greetingTitles, greetingQuestions } from '@/constants/greetings';
+import { greetingTitles, greetingQuestions } from '@/helpers/constants/greetings';
 import { useAppContext } from '@/context/app-context/app-context';
 
 export const useGreetings = () => {

@@ -1,4 +1,4 @@
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/helpers/hooks/useColorScheme';
 import variablesStyles from '@/styles/variables';
 import { StyleSheet } from 'react-native';
 import { useResponsive } from 'react-native-responsive-hook';
